@@ -24,6 +24,12 @@ class TodoRepository(private val todoDao: TodoDao) {
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
+    suspend fun deleteSelections(list: List<Todo>) {
+        todoDao.deleteSelections(list)
+    }
+
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
     suspend fun updateTodo(todo: Todo) {
         todoDao.updateTodo(todo)
     }

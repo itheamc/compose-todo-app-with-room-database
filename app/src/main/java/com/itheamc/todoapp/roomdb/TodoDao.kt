@@ -25,6 +25,12 @@ interface TodoDao {
     suspend fun deleteTodo(todo: Todo)
 
     /**
+     * Function to delete list of todos
+     */
+    @Delete
+    suspend fun deleteSelections(list: List<Todo>)
+
+    /**
      * Function to update [todo] from our database
      */
     @Update

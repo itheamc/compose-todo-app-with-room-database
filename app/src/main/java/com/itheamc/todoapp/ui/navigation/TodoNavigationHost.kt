@@ -1,5 +1,6 @@
 package com.itheamc.todoapp.ui.navigation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -9,6 +10,7 @@ import com.itheamc.todoapp.ui.screens.HomeScreen
 import com.itheamc.todoapp.ui.screens.NewTodoScreen
 import com.itheamc.todoapp.viewmodel.TodoViewModel
 
+@ExperimentalFoundationApi
 @Composable
 fun TodoNavigationHost(
     viewModel: TodoViewModel,

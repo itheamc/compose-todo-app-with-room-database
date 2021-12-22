@@ -1,14 +1,14 @@
 package com.itheamc.todoapp.ui.components
 
-import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -26,29 +26,30 @@ import com.itheamc.todoapp.utils.toDate
 @ExperimentalFoundationApi
 @Composable
 fun TodoView(
-    selected: Boolean,
+    modifier: Modifier,
     todo: Todo,
+    selected: Boolean,
     onClick: () -> Unit,
     onLongClick: () -> Unit
 ) {
 
-    val fraction: Float by animateFloatAsState(
-        targetValue = if (selected) 0.90f else 0.95f,
-        animationSpec = tween(375)
-    )
-
-    val alpha by animateFloatAsState(
-        targetValue = if (selected) 0.30f else 0.1f,
-        animationSpec = tween(375)
-    )
+//    val fraction: Float by animateFloatAsState(
+//        targetValue = if (selected) 0.90f else 0.95f,
+//        animationSpec = tween(375)
+//    )
+//
+//    val alpha by animateFloatAsState(
+//        targetValue = if (selected) 0.30f else 0.1f,
+//        animationSpec = tween(375)
+//    )
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth(fraction = fraction)
+        modifier = modifier
+            .fillMaxWidth(fraction = if (selected) 0.90f else 0.95f)
             .clip(shape = RoundedCornerShape(8.dp))
             .background(
                 color = MaterialTheme.colorScheme.onSurface.copy(
-                    alpha = alpha
+                    alpha = if (selected) 0.30f else 0.1f
                 )
             )
             .combinedClickable(
