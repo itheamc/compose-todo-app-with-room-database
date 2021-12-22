@@ -1,6 +1,7 @@
 package com.itheamc.todoapp.ui.scaffold
 
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +17,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -41,6 +43,14 @@ fun TodoScaffold(viewModel: TodoViewModel) {
     var visible by rememberSaveable {
         mutableStateOf(false)
     }
+
+    // Controlling system back click behaviour if item is selected
+    BackHandler(
+        enabled = selections.isNotEmpty(),
+        onBack = {
+            viewModel.deselectAll()
+        }
+    )
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
